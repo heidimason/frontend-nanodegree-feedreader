@@ -33,7 +33,7 @@ $(function() {
     describe('The menu', function() {
         var $body = $('body');
 
-        it('is hidden', function() {
+        it('is hidden by default', function() {
             expect($body).toHaveClass('menu-hidden');
         });
 
@@ -49,7 +49,6 @@ $(function() {
     });
 
     describe('Initial Entries', function() {
-        var $entry = $('article.entry');
         var $feedContainer = $('.feed');
 
         beforeEach(function(done) { // Using "beforeEach()" because loadFeed() is asynchronous
@@ -57,7 +56,7 @@ $(function() {
          });
 
         it('are in feed container', function(done) {
-            expect( ($entry, $feedContainer).length ).not.toBe(0);
+            expect( $feedContainer.has('.entry').length ).not.toBe(0);
             done();
         });
     });
@@ -68,13 +67,11 @@ $(function() {
     //      * Remember, loadFeed() is asynchronous.
     //      */
     //     beforeEach(function(done) { // Using "beforeEach()" because loadFeed() is asynchronous
-    //         loadFeed(function() {
-    //             done();
-    //         });
+    //         loadFeed(0, done);
     //      });
 
     //     it('content changes', function(done) {
-    //         // expect($container).;
+    //         expect( )
     //         done();
     //     });
     // });
