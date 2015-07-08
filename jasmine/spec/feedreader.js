@@ -55,24 +55,27 @@ $(function() {
             loadFeed(0, done);
          });
 
-        it('are in feed container', function(done) {
+        it('Feed container contains at least one entry', function(done) {
             expect( $feedContainer.has('.entry').length ).not.toBe(0);
             done();
         });
     });
 
-    // describe('New Feed Selection', function() {
-    //     /* TODO: Write a test that ensures when a new feed is loaded
-    //      * by the loadFeed function that the content actually changes.
-    //      * Remember, loadFeed() is asynchronous.
-    //      */
-    //     beforeEach(function(done) { // Using "beforeEach()" because loadFeed() is asynchronous
-    //         loadFeed(0, done);
-    //      });
+    describe('New Feed Selection', function() {
+        beforeEach(function(done) { // Using "beforeEach()" because loadFeed() is asynchronous
+            loadFeed(0, done);
+            loadFeed(1, done);
+         });
 
-    //     it('content changes', function(done) {
-    //         expect( )
-    //         done();
-    //     });
-    // });
+        it('content changes', function(done) {
+            // TODO: Refactor
+            expect( allFeeds[0].name ).not.toMatch( allFeeds[1].name );
+            expect( allFeeds[0].name ).not.toMatch( allFeeds[2].name );
+            expect( allFeeds[0].name ).not.toMatch( allFeeds[3].name );
+            expect( allFeeds[1].name ).not.toMatch( allFeeds[2].name );
+            expect( allFeeds[1].name ).not.toMatch( allFeeds[3].name );
+            expect( allFeeds[2].name ).not.toMatch( allFeeds[3].name );
+            done();
+        });
+    });
 }());
