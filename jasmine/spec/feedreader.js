@@ -9,12 +9,17 @@
  * to ensure they don't run until the DOM is ready.
  */
 $(function() {
+
+    // New test suite
     describe('RSS Feeds', function() {
+
+        // Tests that the allFeeds variable has been defined and that it is not empty
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
 
+        // Loops through each feed in the allFeeds object and ensures it has a URL defined and that the URL is not empty
         it('have URLs', function() {
             for (var key in allFeeds) {
                 expect(allFeeds[key].url).toBeDefined;
@@ -22,6 +27,7 @@ $(function() {
             }
         });
 
+        // Loops through each feed in the allFeeds object and ensures it has a name defined and that the name is not empty
         it('have names', function() {
             for (var key in allFeeds) {
                 expect(allFeeds[key].name).toBeDefined();
@@ -30,13 +36,17 @@ $(function() {
         });
     });
 
+
+    // New test suite
     describe('The menu', function() {
         var $body = $('body');
 
+        // Tests that the menu element is hidden by default
         it('is hidden by default', function() {
             expect($body).toHaveClass('menu-hidden');
         });
 
+        // Tests that the menu changes visibility when the menu icon is clicked
         it('toggles', function() {
             var $menuIcon = $('.menu-icon-link');
 
@@ -48,33 +58,37 @@ $(function() {
         });
     });
 
-    describe('Initial Entries', function() {
-        var $feedContainer = $('.feed');
 
+    // New test suite
+    describe('Initial Entries', function() {
         beforeEach(function(done) { // Using "beforeEach()" because loadFeed() is asynchronous
             loadFeed(0, done);
-         });
+        });
 
+        // Tests that when the loadFeed function is called and completes its work, there is at least a single .entry element within the .feed container
         it('Feed container contains at least one entry', function(done) {
+            var $feedContainer = $('.feed');
+
             expect( $feedContainer.has('.entry').length ).not.toBe(0);
             done();
         });
     });
 
-    describe('New Feed Selection', function() {
-        beforeEach(function(done) { // Using "beforeEach()" because loadFeed() is asynchronous
-            loadFeed(0, done);
-         });
 
-        it('content changes', function(done) {
-            // TODO: Refactor
-            expect( allFeeds[0].name ).not.toMatch( allFeeds[1].name );
-            expect( allFeeds[0].name ).not.toMatch( allFeeds[2].name );
-            expect( allFeeds[0].name ).not.toMatch( allFeeds[3].name );
-            expect( allFeeds[1].name ).not.toMatch( allFeeds[2].name );
-            expect( allFeeds[1].name ).not.toMatch( allFeeds[3].name );
-            expect( allFeeds[2].name ).not.toMatch( allFeeds[3].name );
-            done();
-        });
-    });
+    // New test suite
+    // describe('New Feed Selection', function() {
+    //     beforeEach(function(done) { // Using "beforeEach()" because loadFeed() is asynchronous
+    //         loadFeed(1, function() {
+    //             done();
+    //         });
+    //     });
+
+    //     // Tests that when a new feed is loaded by the loadFeed function, the content actually changes
+    //     it('content changes', function(done) {
+    //         var $feedContainer = $('.feed'),
+    //             $feed = $feedContainer.html();
+
+    //         expect( loadFeed(0).$feed ).not.toMatch( loadFeed(1).$feed );
+    //     });
+    // });
 }());
