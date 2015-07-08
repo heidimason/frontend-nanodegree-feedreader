@@ -64,7 +64,6 @@ $(function() {
     describe('New Feed Selection', function() {
         beforeEach(function(done) { // Using "beforeEach()" because loadFeed() is asynchronous
             loadFeed(0, done);
-            loadFeed(1, done);
          });
 
         it('content changes', function(done) {
