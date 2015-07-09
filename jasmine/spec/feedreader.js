@@ -76,19 +76,26 @@ $(function() {
 
 
     // New test suite
-    // describe('New Feed Selection', function() {
-    //     beforeEach(function(done) { // Using "beforeEach()" because loadFeed() is asynchronous
-    //         loadFeed(1, function() {
-    //             done();
-    //         });
-    //     });
+    describe('New Feed Selection', function() {
+        var feed0,
+            feed1;
 
-    //     // Tests that when a new feed is loaded by the loadFeed function, the content actually changes
-    //     it('content changes', function(done) {
-    //         var $feedContainer = $('.feed'),
-    //             $feed = $feedContainer.html();
+        beforeEach(function(done) { // Using "beforeEach()" because loadFeed() is asynchronous
+            loadFeed(0, function() {
+                feed0 = $('.feed').html();
+                done();
+            });
 
-    //         expect( loadFeed(0).$feed ).not.toMatch( loadFeed(1).$feed );
-    //     });
-    // });
+            loadFeed(1, function() {
+                feed1 = $('.feed').html();
+                done();
+            });
+        });
+
+        // Tests that when a new feed is loaded by the loadFeed function, the content actually changes
+        it('content changes', function(done) {
+            expect(feed0).not.toMatch(feed1);
+            done();
+        });
+    });
 }());
