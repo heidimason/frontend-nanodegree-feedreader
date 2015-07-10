@@ -21,17 +21,17 @@ $(function() {
 
         // Loops through each feed in the allFeeds object and ensures it has a URL defined and that the URL is not empty
         it('have URLs', function() {
-            for (var key in allFeeds) {
-                expect(allFeeds[key].url).toBeDefined;
-                expect(allFeeds[key].url).not.toBe('');
+            for (var i = 0, allFeedsLength = allFeeds.length; i < allFeedsLength; i++) {
+                expect(allFeeds[i].url).toBeDefined;
+                expect(allFeeds[i].url).not.toBe('')
             }
         });
 
         // Loops through each feed in the allFeeds object and ensures it has a name defined and that the name is not empty
         it('have names', function() {
-            for (var key in allFeeds) {
-                expect(allFeeds[key].name).toBeDefined();
-                expect(allFeeds[key].name).not.toBe('');
+            for (var i = 0, allFeedsLength = allFeeds.length; i < allFeedsLength; i++) {
+                expect(allFeeds[i].name).toBeDefined();
+                expect(allFeeds[i].name).not.toBe('');
             }
         });
     });
@@ -78,6 +78,8 @@ $(function() {
     // New test suite
     describe('New Feed Selection', function() {
         var feed0;
+
+        $('.feed').empty(); // Ensures test is protected from external influences from previous tests
 
         beforeEach(function(done) { // Using "beforeEach()" because loadFeed() is asynchronous
             loadFeed(1, function() {
