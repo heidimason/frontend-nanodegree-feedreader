@@ -77,17 +77,21 @@ $(function() {
 
     // New test suite
     describe('New Feed Selection', function() {
+        var feed0;
+
         beforeEach(function(done) { // Using "beforeEach()" because loadFeed() is asynchronous
-            loadFeed(0, done);
+            loadFeed(1, function() {
+                feed0 = $('.feed').html();
+                done();
+            });
         });
 
         // Tests that when a new feed is loaded by the loadFeed function, the content actually changes
         it('content changes', function(done) {
-            var feed0 = $('feed').html();
-
-            loadFeed(1); // loadFeed(2) and loadFeed(3) also pass test
-            expect($('.feed').html()).not.toEqual(feed0);
-            done();
+            loadFeed(0, function() {
+                expect( $('.feed').html() ).not.toEqual(feed0);
+                done();
+            });
         });
     });
 }());
