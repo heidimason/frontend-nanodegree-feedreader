@@ -79,9 +79,9 @@ $(function() {
     describe('New Feed Selection', function() {
         var feed0;
 
-        $('.feed').empty(); // Ensures test is protected from external influences from previous tests
-
         beforeEach(function(done) { // Using "beforeEach()" because loadFeed() is asynchronous
+            $('.feed').empty(); // Ensures test is protected from external influences from previous tests
+
             loadFeed(1, function() {
                 feed0 = $('.feed').html();
                 done();
