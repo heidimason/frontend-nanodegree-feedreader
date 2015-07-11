@@ -23,7 +23,7 @@ $(function() {
         it('have URLs', function() {
             for (var i = 0, allFeedsLength = allFeeds.length; i < allFeedsLength; i++) {
                 expect(allFeeds[i].url).toBeDefined;
-                expect(allFeeds[i].url).not.toBe('')
+                expect(allFeeds[i].url).not.toBe('');
             }
         });
 
